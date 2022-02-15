@@ -9,5 +9,4 @@ public class CarRestApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(CarRestApiApplication.class, args);
     }
-
 }
