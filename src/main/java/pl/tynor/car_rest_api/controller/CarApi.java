@@ -1,6 +1,7 @@
 package pl.tynor.car_rest_api.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.tynor.car_rest_api.model.Car;
@@ -10,7 +11,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/cars")
+@RequestMapping(value = "/cars", produces = {
+        MediaType.APPLICATION_XML_VALUE,
+        MediaType.APPLICATION_JSON_VALUE})
 public class CarApi {
 
     private List<Car> carList;
@@ -41,7 +44,7 @@ public class CarApi {
     public ResponseEntity<List<Car>> findCarByColor(@PathVariable String color) {
         List<Car> cars = carList.stream().filter(car -> car.getColor().equals(color)).collect(Collectors.toList());
         if (!cars.isEmpty()) {
-            return new ResponseEntity (cars, HttpStatus.OK);
+            return new ResponseEntity(cars, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
