@@ -1,6 +1,5 @@
 package pl.tynor.car_rest_api.repository;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import pl.tynor.car_rest_api.model.Car;
 import pl.tynor.car_rest_api.model.enums.Color;
@@ -33,6 +32,14 @@ public class CarRepository implements ICarRepository {
     @Override
     public Car updateCar(Car update) {
         cars.remove(update.getId(), update);
+        cars.put(update.getId(), update);
+        return update;
+    }
+    @Override
+    public Car updateCar(Car update, Long id) {
+        cars.remove(id);
+        update.setId(id);
+        cars.put(id,update);
         return update;
     }
 

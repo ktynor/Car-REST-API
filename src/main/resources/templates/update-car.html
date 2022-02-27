@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Update Car</title>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Simple Car REST API with Thymeleaf and Bootstrap</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/index}">Home</a></li>
+            <li><a th:href="@{/all-cars}">All cars</a></li>
+            <li><a th:href="@{/add-car}">Add a new car</a></li>
+            <li class="active"><a href="#">Update car</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div>
+        <br>
+        <h3>Update Car </h3>
+        <br>
+        <form th:action="@{/update-car/{id}(id=${car.get().getId()})}" th:object="${update}" method="post">
+            <table>
+                <tr>
+                    <td style="padding: 25px 50px 25px 25px;">Id</td>
+                    <td th:text="${car.get().getId()}"></td>
+                </tr>
+                <tr>
+                    <td style="padding: 25px 50px 25px 25px;">Make</td>
+                    <td><input type="text" name="make" th:value="${car.get().getMake()}"/></td>
+                </tr>
+                <tr>
+                    <td style="padding: 25px 50px 25px 25px;">Model</td>
+                    <td><input type="text" name="model" th:value="${car.get().getModel()}"/></td>
+                </tr>
+
+            </table>
+            <div style="padding: 25px 25px 25px 25px;">
+                <input type="submit" value="Submit"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -8,6 +8,9 @@ import java.util.Optional;
 public interface ICarRepository {
     Car addCar(Car car);
     Car updateCar(Car update);
+
+    Car updateCar(Car update, Long id);
+
     void deleteCar(Long id);
     Optional<Car> getCar(Long id);
     List<Car> getCars();
